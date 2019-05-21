@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des mots{% endblock %}
+
+{% block body %}
+    <section class="w-50 m-auto">
+        <h1>Listes des mots</h1>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Mot</th>
+                    <th>Date de création</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for word in words %}
+                <tr>
+                    <td>{{ word.id }}</td>
+                    <td>{{ word.string }}</td>
+                    <td>{{ word.creationDate ? word.creationDate|date('d-m-Y') : '' }}</td>
+                    <td>
+                        <a class="btn btn-primary" href="{{ path('word_show', {'id': word.id}) }}">Voir</a>
+                        <a class="btn btn-primary" href="{{ path('word_edit', {'id': word.id}) }}">Modifier</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="4">Aucun mot trouvé</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <a class="btn btn-primary" href="{{ path('word_new') }}">Ajouter</a>
+    </section>
+{% endblock %}

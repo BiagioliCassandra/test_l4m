@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mot{% endblock %}
+
+{% block body %}
+    <section class="w-50 m-auto">
+        <h1>Mot</h1>
+
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th>Id</th>
+                    <td>{{ word.id }}</td>
+                </tr>
+                <tr>
+                    <th>Mot</th>
+                    <td>{{ word.string }}</td>
+                </tr>
+                <tr>
+                    <th>Date de création</th>
+                    <td>{{ word.creationDate ? word.creationDate|date('d-m-Y') : '' }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="btn-group">
+            <a class="btn btn-primary" href="{{ path('word_index') }}">Retour à la liste</a>
+
+            <a class="btn btn-primary" href="{{ path('word_edit', {'id': word.id}) }}">Modifier</a>
+    
+            {{ include('word/_delete_form.html.twig') }}
+        </div>
+    </section>
+{% endblock %}
